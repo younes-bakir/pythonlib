@@ -4,7 +4,7 @@ import numpy as np
 
 all_data = []
 
-pokemon_num = int(input("How many Pokémon would you like to compare (type '0' to quit)? "))
+pokemon_num = int(input("How many Pokémon would you like to compare? "))
 
 for i in range(pokemon_num):
     pokemon = input("Enter a Pokémon you'd like to compare (type 'exit' if you'd like to quit): ")
