@@ -4,12 +4,14 @@ import numpy as np
 
 all_data = []
 
-for i in range(2):
-    pokemon = input("Enter a Pokémon you'd like to view (type 'exit' if you'd like to quit): ")
+pokemon_num = int(input("How many Pokémon would you like to compare (type '0' to quit)? "))
+
+for i in range(pokemon_num):
+    pokemon = input("Enter a Pokémon you'd like to compare (type 'exit' if you'd like to quit): ")
     if pokemon == "exit": break
 
     response = requests.get(f"https://pokeapi.co/api/v2/pokemon/{pokemon}/")
-    print(f"Status code: {response.status_code}")
+    # print(f"Status code: {response.status_code}")
     if response.status_code == 200:
         data = response.json()
         stats = [s['base_stat'] for s in data['stats']]
@@ -18,7 +20,7 @@ for i in range(2):
     else:
         print("Pokémon not found!")
 
-if len(all_data) == 2:
+if len(all_data) > 0:
     labels = all_data[0][2]
     num_vars = len(labels)
     angles = np.linspace(0, 2 * np.pi, num_vars, endpoint=False).tolist()
@@ -35,5 +37,5 @@ if len(all_data) == 2:
     ax.set_xticks(angles[:-1])
     ax.set_xticklabels(labels)
     plt.legend(loc='upper right', bbox_to_anchor=(1.3, 1.1))
-    plt.title("Pokémon Stat Comparison")
+    plt.title("Pokémon-Comparisonatron-3000")
     plt.show()
